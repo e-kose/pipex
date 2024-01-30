@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekose <ekose@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/30 17:42:42 by ekose             #+#    #+#             */
-/*   Updated: 2024/01/19 18:09:22 by ekose            ###   ########.fr       */
+/*   Created: 2023/10/16 00:32:42 by ekose             #+#    #+#             */
+/*   Updated: 2023/10/21 15:27:33 by ekose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	err_msg(char *error)
+void	ft_putchar_fd(char c, int fd)
 {
-	write(2, error, ft_strlen(error));
-	exit(1);
-}
-
-void	msg(char *error)
-{
-	perror(error);
-	exit(1);
+	write(fd, &c, 1);
 }

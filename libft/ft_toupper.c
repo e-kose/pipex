@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekose <ekose@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/30 17:42:42 by ekose             #+#    #+#             */
-/*   Updated: 2024/01/19 18:09:22 by ekose            ###   ########.fr       */
+/*   Created: 2023/10/15 20:49:20 by ekose             #+#    #+#             */
+/*   Updated: 2023/10/21 12:39:15 by ekose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	err_msg(char *error)
+int	ft_toupper(int c)
 {
-	write(2, error, ft_strlen(error));
-	exit(1);
-}
-
-void	msg(char *error)
-{
-	perror(error);
-	exit(1);
+	if (c >= 'a' && c <= 'z')
+		return (c - 32);
+	return (c);
 }

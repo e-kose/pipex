@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekose <ekose@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/30 17:42:42 by ekose             #+#    #+#             */
-/*   Updated: 2024/01/19 18:09:22 by ekose            ###   ########.fr       */
+/*   Created: 2023/10/14 15:09:05 by ekose             #+#    #+#             */
+/*   Updated: 2023/10/21 12:16:48 by ekose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	err_msg(char *error)
+char	*ft_substr(char	const *s, unsigned int start, size_t len)
 {
-	write(2, error, ft_strlen(error));
-	exit(1);
-}
+	unsigned int	i;
+	char			*p;
 
-void	msg(char *error)
-{
-	perror(error);
-	exit(1);
+	if (start > ft_strlen(s))
+	{
+		return (ft_strdup(""));
+	}
+	if (ft_strlen(s) < len)
+		len = ft_strlen(s);
+	i = 0;
+	p = malloc((sizeof(char)) * (len + 1));
+	if (p == NULL)
+		return (NULL);
+	while (s[start] && i < len)
+	{
+		p[i] = s[start];
+		i++;
+		start++;
+	}
+	p[i] = '\0';
+	return (p);
 }

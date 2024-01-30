@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekose <ekose@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/30 17:42:42 by ekose             #+#    #+#             */
-/*   Updated: 2024/01/19 18:09:22 by ekose            ###   ########.fr       */
+/*   Created: 2023/10/09 12:23:55 by ekose             #+#    #+#             */
+/*   Updated: 2023/10/21 12:37:04 by ekose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	err_msg(char *error)
+int	ft_isalnum(int c)
 {
-	write(2, error, ft_strlen(error));
-	exit(1);
-}
-
-void	msg(char *error)
-{
-	perror(error);
-	exit(1);
+	if ((c >= '0' && c <= '9')
+		|| (c >= 'A' && c <= 'Z')
+		|| (c >= 'a' && c <= 'z'))
+	{
+		return (1);
+	}
+	return (0);
 }

@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekose <ekose@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/30 17:42:42 by ekose             #+#    #+#             */
-/*   Updated: 2024/01/19 18:09:22 by ekose            ###   ########.fr       */
+/*   Created: 2023/10/09 13:44:37 by ekose             #+#    #+#             */
+/*   Updated: 2023/10/25 13:35:49 by ekose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	err_msg(char *error)
+size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize)
 {
-	write(2, error, ft_strlen(error));
-	exit(1);
-}
+	size_t	i;
+	size_t	slen;
 
-void	msg(char *error)
-{
-	perror(error);
-	exit(1);
+	slen = ft_strlen(src);
+	if (dstsize == 0)
+		return (slen);
+	i = 0;
+	while (src[i] && i < dstsize - 1)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (slen);
 }

@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekose <ekose@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/30 17:42:42 by ekose             #+#    #+#             */
-/*   Updated: 2024/01/19 18:09:22 by ekose            ###   ########.fr       */
+/*   Created: 2023/10/11 18:03:48 by ekose             #+#    #+#             */
+/*   Updated: 2023/10/21 12:36:53 by ekose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	err_msg(char *error)
+int	ft_atoi(const char *str)
 {
-	write(2, error, ft_strlen(error));
-	exit(1);
-}
+	int	i;
+	int	sayi;
+	int	isaret;
 
-void	msg(char *error)
-{
-	perror(error);
-	exit(1);
+	i = 0;
+	sayi = 0;
+	isaret = 1;
+	while ((str[i] >= 9 && str[i] <= 13) || (str[i] == ' '))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			isaret *= -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		sayi = sayi * 10 + (str[i] - '0');
+		i++;
+	}
+	return (isaret * sayi);
 }

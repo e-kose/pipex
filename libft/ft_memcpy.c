@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekose <ekose@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/30 17:42:42 by ekose             #+#    #+#             */
-/*   Updated: 2024/01/19 18:09:22 by ekose            ###   ########.fr       */
+/*   Created: 2023/10/11 13:47:58 by ekose             #+#    #+#             */
+/*   Updated: 2023/10/23 11:43:08 by ekose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	err_msg(char *error)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	write(2, error, ft_strlen(error));
-	exit(1);
-}
+	size_t			i;
+	unsigned char	*dest;
+	unsigned char	*sourc;
 
-void	msg(char *error)
-{
-	perror(error);
-	exit(1);
+	i = 0;
+	dest = (unsigned char *)dst;
+	sourc = (unsigned char *)src;
+	if (!dest && !sourc)
+		return (0);
+	while (i < n)
+	{
+		dest[i] = sourc[i];
+		i++;
+	}
+	return (dest);
 }

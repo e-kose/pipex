@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekose <ekose@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/30 17:42:42 by ekose             #+#    #+#             */
-/*   Updated: 2024/01/19 18:09:22 by ekose            ###   ########.fr       */
+/*   Created: 2023/10/20 12:28:23 by ekose             #+#    #+#             */
+/*   Updated: 2023/10/20 14:45:21 by ekose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	err_msg(char *error)
+t_list	*ft_lstlast(t_list *lst)
 {
-	write(2, error, ft_strlen(error));
-	exit(1);
-}
+	t_list	*tmp;
 
-void	msg(char *error)
-{
-	perror(error);
-	exit(1);
+	tmp = lst;
+	if (!lst)
+		return (0);
+	while (tmp -> next != NULL)
+	{
+		tmp = tmp -> next;
+	}
+	return (tmp);
 }

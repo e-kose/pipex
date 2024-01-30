@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekose <ekose@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/30 17:42:42 by ekose             #+#    #+#             */
-/*   Updated: 2024/01/19 18:09:22 by ekose            ###   ########.fr       */
+/*   Created: 2023/10/09 13:31:23 by ekose             #+#    #+#             */
+/*   Updated: 2023/10/21 12:38:50 by ekose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	err_msg(char *error)
+size_t	ft_strlen(const char *s)
 {
-	write(2, error, ft_strlen(error));
-	exit(1);
-}
+	size_t	i;
 
-void	msg(char *error)
-{
-	perror(error);
-	exit(1);
+	i = 0;
+	while (s[i])
+	{
+		i++;
+	}
+	return (i);
 }

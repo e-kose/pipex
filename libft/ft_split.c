@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekose <ekose@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/25 20:27:08 by ekose             #+#    #+#             */
-/*   Updated: 2023/12/28 15:35:38 by ekose            ###   ########.fr       */
+/*   Created: 2023/10/15 13:55:59 by ekose             #+#    #+#             */
+/*   Updated: 2023/11/01 18:24:02 by ekose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
-#include <stdlib.h>
+#include "libft.h"
 
 static int	ft_worldlen(const char *s, char c, int start)
 {

@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   cmd_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekose <ekose@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/30 17:42:42 by ekose             #+#    #+#             */
-/*   Updated: 2024/01/19 18:09:22 by ekose            ###   ########.fr       */
+/*   Created: 2023/12/30 23:37:41 by ekose             #+#    #+#             */
+/*   Updated: 2024/01/19 14:34:06 by ekose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	err_msg(char *error)
+char	*cmd_get(char **sep_path, char *cmd_arg)
 {
-	write(2, error, ft_strlen(error));
-	exit(1);
-}
+	char	*tmp;
+	char	*comand;
 
-void	msg(char *error)
-{
-	perror(error);
-	exit(1);
+	while (*sep_path)
+	{
+		tmp = ft_strjoin(*sep_path, "/");
+		comand = ft_strjoin(tmp, cmd_arg);
+		free(tmp);
+		if (access(comand, X_OK) == 0)
+			return (comand);
+		free(comand);
+		sep_path++;
+	}
+	return (NULL);
 }

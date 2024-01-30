@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekose <ekose@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/30 17:42:42 by ekose             #+#    #+#             */
-/*   Updated: 2024/01/19 18:09:22 by ekose            ###   ########.fr       */
+/*   Created: 2023/10/14 17:14:28 by ekose             #+#    #+#             */
+/*   Updated: 2023/10/20 18:51:04 by ekose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	err_msg(char *error)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	write(2, error, ft_strlen(error));
-	exit(1);
-}
+	size_t	len;
+	size_t	i;
+	int		j;
+	char	*p;
 
-void	msg(char *error)
-{
-	perror(error);
-	exit(1);
+	if (!s1 && !s2)
+		return (ft_strdup(""));
+	len = ft_strlen(s1) + ft_strlen(s2);
+	i = 0;
+	j = ft_strlen(s1);
+	p = malloc(sizeof(char) * (len) + 1);
+	if (!p)
+		return (0);
+	ft_memcpy(p, s1, ft_strlen(s1));
+	while (i < ft_strlen(s2))
+	{
+		p[j++] = s2[i++];
+	}
+	p[j] = '\0';
+	return (p);
 }

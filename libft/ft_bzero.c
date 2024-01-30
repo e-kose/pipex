@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekose <ekose@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/30 17:42:42 by ekose             #+#    #+#             */
-/*   Updated: 2024/01/19 18:09:22 by ekose            ###   ########.fr       */
+/*   Created: 2023/10/11 12:09:50 by ekose             #+#    #+#             */
+/*   Updated: 2023/10/20 15:29:25 by ekose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	err_msg(char *error)
+void	ft_bzero(void *s, size_t n)
 {
-	write(2, error, ft_strlen(error));
-	exit(1);
-}
+	char	*p;
+	size_t	i;
 
-void	msg(char *error)
-{
-	perror(error);
-	exit(1);
+	i = 0;
+	p = s;
+	while (i < n)
+	{
+		p[i] = '\0';
+		i++;
+	}
 }

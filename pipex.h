@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekose <ekose@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/25 19:07:52 by ekose             #+#    #+#             */
-/*   Updated: 2023/12/28 19:36:23 by ekose            ###   ########.fr       */
+/*   Created: 2023/12/30 17:35:37 by ekose             #+#    #+#             */
+/*   Updated: 2024/01/19 18:20:15 by ekose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,31 @@
 # define PIPEX_H
 
 # include <unistd.h>
+# include "libft/libft.h"
 # include <fcntl.h>
-# include <stdio.h>
 # include <stdlib.h>
+# include <sys/wait.h>
+# include <stdio.h>
 
 typedef struct s_pipex
 {
+	int		infile;
+	int		outfile;
+	int		error_file;
 	int		pid1;
 	int		pid2;
 	int		fd[2];
-	int		infile;
-	int		outfile;
 	char	*path;
-	char	**cmd_path;
-	char	**cmd_args;
-	char	*cmd;
-}			t_pipex;
+	char	**sep_path;
+}	t_pipex;
 
-void	free_pipex(t_pipex *pipex);
-void	close_pipex(t_pipex *pipex);
-char	*find_path(char **envp, t_pipex *pipex);
-void	first_child(t_pipex pipex, char **argv, char **envp);
-void	second_child(t_pipex pipex, char **argv, char **envp);
-int		msg(char *c);
-void	msg_error(char *c);
-size_t	ft_strlen(const char *s);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-char	*ft_strdup(const char *s1);
-char	*ft_strjoin(char const *s1, char const *s2);
-void	*ft_memcpy(void *dst, const void *src, size_t n);
-char	**ft_split(char const *s, char c);
+char	*find_path(char **envp);
+void	first_child_procces(t_pipex pipex, char **argv, char **envp);
+void	second_child_procces(t_pipex pipex, char **argv, char **envp);
+char	*cmd_get(char **sep_path, char *cmd_arg);
+void	transactions(t_pipex *pipex, int argc, char **argv);
+void	err_msg(char *error);
+void	msg(char *error);
+void	ft_close(t_pipex pipex);
+void	free_sep_path(char **sep_path);
 #endif
