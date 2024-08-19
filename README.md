@@ -11,6 +11,8 @@ Bu projede, aşağıdaki shell komutunun davranışını taklit eden bir program
 ```shell
 ❯ < file1 cmd1 | cmd2 > file2
 ```
+![Ekran Görüntüsü](Ekran_resmi.png)
+
 ## Programın Amacı
 
 Programın amacı, bir giriş dosyasını ve iki komutu alarak, bu dosyayı ilk komuta standart giriş (stdin) olarak vermek, ilk komutun çıktısını ikinci komuta boru (pipe) ile aktarmak ve son olarak sonucu ikinci dosyaya kaydetmektir. Komutları daha detaylı inceleyelim:
@@ -45,4 +47,3 @@ Bu projede, pipe, fork ve dup gibi yeni araçları kullanarak çalışacağız. 
 Komutları sakladıktan sonra ve bazı titiz hata kontrollerinden sonra, komut listesi üzerinde bir ``while`` döngüsü ile döneriz. Her düğüm için yeni bir pipe ve fork oluştururuz. Bu pipe'ları çocuk süreçlerin yazma uçlarını ana süreçlerin okuma uçlarıyla bağlamak için kullanırız. ``dup2`` kullanarak giriş dosyasını standart girişe yönlendiririz ve sonunda çıkış dosyasına yönlendiririz. Çocuk süreçler ``fd[1]``'e yazar ve tüm gereksiz dosya tanımlayıcılarını dikkatlice kapatır. Her çocuk, bağlı listedeki mevcut komutları çalıştırır ve pipe, çıktıyı ana sürece gönderir. Ana süreç, çocuk sürecinin bitmesini bekler ve pipe'ın okuma ucunu bir sonraki komut için ``stdin``'e geri yönlendirir, kullanılmayan dosya tanımlayıcılarını kapatır.
 
 Ana süreç tamamlandığında, komutların çıktıları çıkış dosyasına ulaşmış olmalıdır. Bu noktadan sonra, tüm ayrılmış belleği serbest bırakmak ve artık kullanılmayan dosya tanımlayıcılarını kapatmak için ``pipex_exit`` adında bir fonksiyon çağırabiliriz.
-
