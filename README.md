@@ -1,6 +1,6 @@
 ## Giriş
 
-Bu projede, shell'den bildiğimiz ve sevdiğimiz boru (``|``) işlemini kendi başımıza gerçekleştireceğiz. Bunun için, boru, fork ve dup gibi bir dizi yeni fonksiyon kullanarak çoklu süreçler kavramını tanıyacağız.
+Bu projede, shell'den bildiğimiz ve sevdiğimiz boru (``|``) işlemini kendi başımıza gerçekleştireceğiz. Bunun için, pipe, fork ve dup gibi bir dizi yeni fonksiyon kullanarak multiprocess(çoklu süreçler) kavramını tanıyacağız.
 
 [TUTORIAL](https://en.wikipedia.org/wiki/Pipeline_(Unix))
 
@@ -42,7 +42,7 @@ Bu projede, pipe, fork ve dup gibi yeni araçları kullanarak çalışacağız. 
 | ``dup2(oldfd, newfd)``| ``newfd``'yi kapatır ve ``oldfd``'yi ``newfd``'ye kopyalar      | ``-1`` hata                                   |
 | ``execve(path, cmd, envp)`` | Tam yolunu, NULL-termin edilmiş parametreler dizisini ve ortamı alır. Mevcut süreci belirtilen komut ile değiştirir | ``-1`` hata       |
 
-İlk adımda, komutlar için yolları elde etmemiz gerekiyordu. Bunu, Unix tabanlı sistemlerde bulunan ``PATH`` değişkenine bakarak yaptık. Tam yol ve parametreler dizisini daha sonra erişim için bir bağlı liste (linked list) olarak sakladık.
+İlk adımda, komutlar için yolları elde etmemiz gerekiyordu. Bunu, Unix tabanlı sistemlerde bulunan ``PATH`` değişkenine bakarak yaptık. Tam yol ve parametreler dizisini daha sonra erişim  için bir değişkende tuttuk.
 
 Komutları sakladıktan sonra ve bazı titiz hata kontrollerinden sonra, komut listesi üzerinde bir ``while`` döngüsü ile döneriz. Her düğüm için yeni bir pipe ve fork oluştururuz. Bu pipe'ları çocuk süreçlerin yazma uçlarını ana süreçlerin okuma uçlarıyla bağlamak için kullanırız. ``dup2`` kullanarak giriş dosyasını standart girişe yönlendiririz ve sonunda çıkış dosyasına yönlendiririz. Çocuk süreçler ``fd[1]``'e yazar ve tüm gereksiz dosya tanımlayıcılarını dikkatlice kapatır. Her çocuk, bağlı listedeki mevcut komutları çalıştırır ve pipe, çıktıyı ana sürece gönderir. Ana süreç, çocuk sürecinin bitmesini bekler ve pipe'ın okuma ucunu bir sonraki komut için ``stdin``'e geri yönlendirir, kullanılmayan dosya tanımlayıcılarını kapatır.
 
